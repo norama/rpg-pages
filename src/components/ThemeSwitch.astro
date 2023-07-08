@@ -1,0 +1,80 @@
+---
+export interface Props {
+  theme: 'light' | 'dark'
+}
+
+const { theme } = Astro.props
+const url = Astro.url.href
+---
+
+<form action={url} id="themeForm" method="GET">
+  <section>
+    <div class="img sun"><img src="/sun.svg" /></div>
+    <input
+      type="checkbox"
+      role="switch"
+      id="themeSwitch"
+      checked={theme === 'dark' ? 'checked' : undefined}
+      onchange="this.form.onsubmit()"
+    />
+    <input type="hidden" name="theme" id="themeInput" value={'xxx'} />
+    <div class="img moon"><img src="/moon.svg" /></div>
+  </section>
+</form>
+
+<script>
+  const themeForm = document.getElementById('themeForm') as HTMLFormElement
+  const themeSwitch = document.getElementById('themeSwitch') as HTMLInputElement
+  const themeInput = document.getElementById('themeInput') as HTMLInputElement
+
+  themeForm.onsubmit = () => {
+    const theme = themeSwitch.checked ? 'dark' : 'light'
+    themeInput.value = theme
+    themeForm.submit()
+  }
+</script>
+
+<style
+  define:vars={{ sunOpacity: theme === 'light' ? 0 : 1, moonOpacity: theme === 'light' ? 1 : 0 }}
+>
+  form {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+  }
+
+  section {
+    position: relative;
+  }
+
+  input {
+    transform: scale(1.2);
+  }
+
+  .img {
+    transition: opacity 0.2s ease-in-out;
+    z-index: 2;
+    cursor: pointer;
+    pointer-events: none;
+  }
+
+  .sun {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: var(--sunOpacity);
+  }
+
+  .moon {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    opacity: var(--moonOpacity);
+  }
+</style>

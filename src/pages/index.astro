@@ -1,0 +1,39 @@
+---
+import Layout from 'layouts/PageLayout.astro'
+
+let theme = Astro.cookies.get('theme').value as 'light' | 'dark'
+const themeSearchParam = Astro.url.searchParams.get('theme')
+if (themeSearchParam === 'dark' || themeSearchParam === 'light') {
+  Astro.cookies.set('theme', themeSearchParam)
+  theme = themeSearchParam
+}
+---
+
+<Layout title="RPG Configurator" theme={theme}>
+  <main class="container">
+    <h1>Postava</h1>
+    <section id="character">
+      <details>
+        <summary role="button" class="secondary">Tvorba postavy</summary>
+        <p>
+          Vytvoření postavy je asi nejdůležitější funkcí pravidel. Obecně vzato, nejlepší způsob jak
+          vytvořit postavu, je v součinnosti s Pánem jeskyně. Zkušenější hráč RPGček by neměl mít
+          problém vytvořit podle těchto pravidel postavu (až to bude kompletní), ale kámen úrazu je
+          v tom, že pravidla nejsou to jediné, co je třeba při tvorbě postavy zohlednit.
+        </p>
+        <p>
+          Nejdříve je dobré se zamyslet nad tím, jak postava zapadne do zamýšleného
+          <a href="http://www.odria.eu/wiki/index.php/Kategorie:Settingy">settingu</a>
+          a stylu hry, a možná i vzít v úvahu jaké postavy budou ve hře stran ostatních hráčů.
+        </p>
+        <p>
+          Další věcí na zvážení je zábavnost a zvládnutelnost hraní zamýšlené postavy. Hráč by si
+          měl dobře rozmyslet, jestli dokáže zahrát zejména opačné pohlaví či nelidskou rasu, a
+          jestli jej to bude bavit hrát třeba i za půl roku - pokud je plánována kampaň. Více
+          informací:
+          <a href="http://www.odria.eu/wiki/index.php/Tvorba_postavy">Odria wiki: Tvorba postavy</a>
+        </p>
+      </details>
+    </section>
+  </main>
+</Layout>
