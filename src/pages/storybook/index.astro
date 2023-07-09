@@ -1,0 +1,16 @@
+---
+import PageLayout from 'layouts/PageLayout.astro'
+
+import { getTheme } from 'utils/theme'
+
+const theme = getTheme(Astro.url, Astro.cookies)
+---
+
+<PageLayout title="RPG Storybook" theme={theme}>
+  <main class="container">
+    <h1>Storybook</h1>
+    <section id="name">
+      <p>MF placeholder</p>
+    </section>
+  </main>
+</PageLayout>

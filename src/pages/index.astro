@@ -1,15 +1,12 @@
 ---
-import Layout from 'layouts/PageLayout.astro'
+import PageLayout from 'layouts/PageLayout.astro'
 
-let theme = Astro.cookies.get('theme').value as 'light' | 'dark'
-const themeSearchParam = Astro.url.searchParams.get('theme')
-if (themeSearchParam === 'dark' || themeSearchParam === 'light') {
-  Astro.cookies.set('theme', themeSearchParam)
-  theme = themeSearchParam
-}
+import { getTheme } from 'utils/theme'
+
+const theme = getTheme(Astro.url, Astro.cookies)
 ---
 
-<Layout title="RPG Configurator" theme={theme}>
+<PageLayout title="RPG Configurator" theme={theme}>
   <main class="container">
     <h1>Postava</h1>
     <section id="character">
@@ -36,4 +33,4 @@ if (themeSearchParam === 'dark' || themeSearchParam === 'light') {
       </details>
     </section>
   </main>
-</Layout>
+</PageLayout>
