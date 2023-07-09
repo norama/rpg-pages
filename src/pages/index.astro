@@ -1,5 +1,6 @@
 ---
 import PageLayout from 'layouts/PageLayout.astro'
+import NameInput from 'microfrontends/NameInput'
 
 import { getTheme } from 'utils/theme'
 
@@ -9,6 +10,12 @@ const theme = getTheme(Astro.url, Astro.cookies)
 <PageLayout title="RPG Configurator" theme={theme}>
   <main class="container">
     <h1>Postava</h1>
+    <section>
+      <details open>
+        <summary class="secondary">Název</summary>
+        <section class="name"><NameInput client:only="solid" /></section>
+      </details>
+    </section>
     <section id="character">
       <details>
         <summary role="button" class="secondary">Tvorba postavy</summary>
@@ -34,3 +41,9 @@ const theme = getTheme(Astro.url, Astro.cookies)
     </section>
   </main>
 </PageLayout>
+
+<style>
+  .name {
+    height: 240px;
+  }
+</style>

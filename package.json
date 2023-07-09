@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^0.19.7",
+    "@astrojs/solid-js": "^2.2.0",
+    "@modular-forms/solid": "^0.18.1",
     "@picocss/pico": "^1.5.10",
     "astro": "^2.8.0",
     "prettier": "^2.7.1",
     "prettier-plugin-astro": "^0.7.0",
-    "sass": "^1.63.6"
+    "sass": "^1.63.6",
+    "solid-js": "^1.7.7"
   }
 }

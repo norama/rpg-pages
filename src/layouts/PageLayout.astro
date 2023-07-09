@@ -19,6 +19,14 @@ const { title, theme } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script type="importmap">
+    {
+      "imports": {
+        "solid-js": "https://esm.sh/solid-js",
+        "@modular-forms/solid": "https://esm.sh/@modular-forms/solid"
+      }
+    }
+    </script>
   </head>
   <body>
     <ThemeSwitch theme={theme} />
